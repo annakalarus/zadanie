@@ -4,56 +4,35 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("== Prosty Kalkulator ==");
+        // Wybór kierunku konwersji
+        Console.WriteLine("Wybierz kierunek konwersji:");
+        Console.WriteLine("C - Celsjusz na Fahrenheit");
+        Console.WriteLine("F - Fahrenheit na Celsjusz");
+        string wybor = Console.ReadLine().ToUpper();
 
-        // Pobranie pierwszej liczby
-        Console.Write("Podaj pierwszą liczbę: ");
-        double liczba1 = Convert.ToDouble(Console.ReadLine());
-
-        // Pobranie drugiej liczby
-        Console.Write("Podaj drugą liczbę: ");
-        double liczba2 = Convert.ToDouble(Console.ReadLine());
-
-        // Pobranie operacji
-        Console.Write("Wybierz operację (+, -, *, /): ");
-        string operacja = Console.ReadLine();
-
-        double wynik = 0;
-        bool poprawnaOperacja = true;
-
-        // Wybór działania
-        if (operacja == "+")
+        // Sprawdzanie, czy użytkownik podał poprawny wybór
+        if (wybor == "C" || wybor == "F")
         {
-            wynik = liczba1 + liczba2;
-        }
-        else if (operacja == "-")
-        {
-            wynik = liczba1 - liczba2;
-        }
-        else if (operacja == "*")
-        {
-            wynik = liczba1 * liczba2;
-        }
-        else if (operacja == "/")
-        {
-            if (liczba2 != 0)
-                wynik = liczba1 / liczba2;
-            else
+            // Wprowadzenie temperatury przez użytkownika
+            Console.Write("Podaj wartość temperatury: ");
+            double temperatura = double.Parse(Console.ReadLine());
+
+            if (wybor == "C")
             {
-                Console.WriteLine("Błąd: Dzielenie przez zero!");
-                poprawnaOperacja = false;
+                // Konwersja Celsjusza na Fahrenheita
+                double fahrenheit = (temperatura * 9 / 5) + 32;
+                Console.WriteLine($"Temperatura {temperatura}°C to {fahrenheit}°F");
+            }
+            else if (wybor == "F")
+            {
+                // Konwersja Fahrenheita na Celsjusza
+                double celsius = (temperatura - 32) * 5 / 9;
+                Console.WriteLine($"Temperatura {temperatura}°F to {celsius}°C");
             }
         }
         else
         {
-            Console.WriteLine("Nieznana operacja.");
-            poprawnaOperacja = false;
-        }
-
-        // Wyświetlenie wyniku
-        if (poprawnaOperacja)
-        {
-            Console.WriteLine($"Wynik: {wynik}");
+            Console.WriteLine("Nieprawidłowy wybór! Wprowadź 'C' lub 'F'.");
         }
     }
 }
