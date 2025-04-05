@@ -4,35 +4,37 @@ class Program
 {
     static void Main()
     {
-        // Wybór kierunku konwersji
-        Console.WriteLine("Wybierz kierunek konwersji:");
-        Console.WriteLine("C - Celsjusz na Fahrenheit");
-        Console.WriteLine("F - Fahrenheit na Celsjusz");
-        string wybor = Console.ReadLine().ToUpper();
+        // Wprowadzenie liczby ocen
+        Console.Write("Podaj liczbę ocen: ");
+        int liczbaOcen = int.Parse(Console.ReadLine());
 
-        // Sprawdzanie, czy użytkownik podał poprawny wybór
-        if (wybor == "C" || wybor == "F")
+        // Deklaracja zmiennej do sumy ocen
+        double sumaOcen = 0;
+
+        // Pętla for do wprowadzenia ocen
+        for (int i = 1; i <= liczbaOcen; i++)
         {
-            // Wprowadzenie temperatury przez użytkownika
-            Console.Write("Podaj wartość temperatury: ");
-            double temperatura = double.Parse(Console.ReadLine());
+            Console.Write($"Podaj ocenę {i}: ");
+            double ocena = double.Parse(Console.ReadLine());
 
-            if (wybor == "C")
-            {
-                // Konwersja Celsjusza na Fahrenheita
-                double fahrenheit = (temperatura * 9 / 5) + 32;
-                Console.WriteLine($"Temperatura {temperatura}°C to {fahrenheit}°F");
-            }
-            else if (wybor == "F")
-            {
-                // Konwersja Fahrenheita na Celsjusza
-                double celsius = (temperatura - 32) * 5 / 9;
-                Console.WriteLine($"Temperatura {temperatura}°F to {celsius}°C");
-            }
+            // Dodanie oceny do sumy
+            sumaOcen += ocena;
+        }
+
+        // Obliczenie średniej
+        double srednia = sumaOcen / liczbaOcen;
+
+        // Wyświetlenie średniej
+        Console.WriteLine($"Średnia: {srednia:F2}");
+
+        // Sprawdzenie, czy uczeń zdał przedmiot
+        if (srednia >= 3.0)
+        {
+            Console.WriteLine("Uczeń zdał przedmiot.");
         }
         else
         {
-            Console.WriteLine("Nieprawidłowy wybór! Wprowadź 'C' lub 'F'.");
+            Console.WriteLine("Uczeń nie zdał przedmiotu.");
         }
     }
 }
